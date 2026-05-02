@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/hf-api/(.*)",
+      "destination": "https://router.huggingface.co/hf-inference/$1"
+    },
+    {
+      "source": "/google-tts/(.*)",
+      "destination": "https://translate.googleapis.com/$1"
+    },
+    {
+      "source": "/zsky-api/(.*)",
+      "destination": "https://api.zsky.ai/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
