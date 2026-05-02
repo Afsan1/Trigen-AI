@@ -61,20 +61,15 @@ export default function GenerateImagePage() {
                 throw new Error("Missing API Key! Please stop your server and run 'npm run dev' again so Vite can load your new .env variables.");
             }
 
-            // Bypassing Vercel's backend entirely to avoid routing/timeout issues
-            const proxyUrl = "https://corsproxy.io/?";
-            const targetUrl = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell";
-            
-            console.log("Generating image via direct proxy...");
+            console.log("Generating image via final-fix proxy...");
             const response = await fetch(
-                proxyUrl + encodeURIComponent(targetUrl),
+                `/api/final-fix?t=${Date.now()}`,
                 {
                     headers: {
-                        "Authorization": `Bearer ${HF_TOKEN}`,
                         "Content-Type": "application/json",
                     },
                     method: "POST",
-                    body: JSON.stringify({ inputs: prompt }),
+                    body: JSON.stringify({ prompt }),
                 }
             );
 
