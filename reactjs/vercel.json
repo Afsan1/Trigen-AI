@@ -10,7 +10,7 @@
       "destination": "https://api.zsky.ai/$1"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ]
