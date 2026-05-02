@@ -16,29 +16,38 @@ export default async function handler(req) {
       return new Response(JSON.stringify({ error: 'Token Missing' }), { status: 500 });
     }
 
-    // Using a faster, more reliable model for testing
-    const model = "stabilityai/stable-diffusion-2-1";
+    // Using the user's preferred model
+    const model = "black-forest-labs/FLUX.1-schnell";
     
-    const response = await fetch(
+    console.log(`Calling HF model: ${model}`);
+    
+    const hfResponse = await fetch(
       `https://api-inference.huggingface.co/models/${model}`,
       {
         headers: {
           Authorization: `Bearer ${HF_TOKEN}`,
           "Content-Type": "application/json",
+          "x-use-cache": "false"
         },
         method: "POST",
         body: JSON.stringify({ inputs: prompt }),
       }
     );
 
-    if (!response.ok) {
-        const err = await response.text();
-        return new Response(`HF Error: ${err}`, { status: response.status });
+    if (!hfResponse.ok) {
+        const errText = await hfResponse.text();
+        return new Response(`HuggingFace API Error (${hfResponse.status}): ${errText}`, { 
+            status: hfResponse.status,
+            headers: { "Content-Type": "text/plain" }
+        });
     }
 
-    const blob = await response.blob();
+    const blob = await hfResponse.blob();
     return new Response(blob, {
-        headers: { "Content-Type": "image/jpeg" }
+        headers: { 
+            "Content-Type": "image/jpeg",
+            "X-Proxy-Success": "true"
+        }
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), { status: 500 });
