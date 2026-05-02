@@ -62,7 +62,7 @@ export default function GenerateImagePage() {
             }
 
             const response = await fetch(
-                "/hf-api/models/black-forest-labs/FLUX.1-schnell",
+                "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
                 {
                     headers: {
                         Authorization: `Bearer ${HF_TOKEN}`,
