@@ -62,14 +62,13 @@ export default function GenerateImagePage() {
             }
 
             const response = await fetch(
-                "/hf-api/models/black-forest-labs/FLUX.1-schnell",
+                "/api/generate",
                 {
                     headers: {
-                        Authorization: `Bearer ${HF_TOKEN}`,
                         "Content-Type": "application/json",
                     },
                     method: "POST",
-                    body: JSON.stringify({ inputs: prompt }),
+                    body: JSON.stringify({ prompt }),
                 }
             );
 
