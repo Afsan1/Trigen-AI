@@ -13,11 +13,14 @@ export default async function handler(req) {
     const HF_TOKEN = process.env.VITE_HUGGINGFACE_KEY;
 
     if (!HF_TOKEN) {
-      return new Response(JSON.stringify({ error: 'Missing HF Token' }), { status: 500 });
+      return new Response(JSON.stringify({ error: 'Token Missing' }), { status: 500 });
     }
 
+    // Using a faster, more reliable model for testing
+    const model = "stabilityai/stable-diffusion-2-1";
+    
     const response = await fetch(
-      "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-schnell",
+      `https://api-inference.huggingface.co/models/${model}`,
       {
         headers: {
           Authorization: `Bearer ${HF_TOKEN}`,
@@ -28,10 +31,15 @@ export default async function handler(req) {
       }
     );
 
-    // Return the response directly with a custom header to verify it's the Edge Function
-    const finalResponse = new Response(response.body, response);
-    finalResponse.headers.set('X-Edge-Proxy', 'true');
-    return finalResponse;
+    if (!response.ok) {
+        const err = await response.text();
+        return new Response(`HF Error: ${err}`, { status: response.status });
+    }
+
+    const blob = await response.blob();
+    return new Response(blob, {
+        headers: { "Content-Type": "image/jpeg" }
+    });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }
