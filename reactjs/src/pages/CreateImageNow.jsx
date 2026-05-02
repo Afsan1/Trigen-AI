@@ -61,16 +61,11 @@ export default function GenerateImagePage() {
                 throw new Error("Missing API Key! Please stop your server and run 'npm run dev' again so Vite can load your new .env variables.");
             }
 
-            const response = await fetch(
-                `/api/stable?t=${Date.now()}`,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    method: "POST",
-                    body: JSON.stringify({ prompt }),
-                }
-            );
+            // Using Pollinations.ai - 100% Free, No Key Required, No CORS Issues
+            console.log("Generating image via Pollinations.ai...");
+            const pollinationUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?nologo=true&seed=${Date.now()}&width=1024&height=1024&enhance=true`;
+            
+            const response = await fetch(pollinationUrl);
 
             if (!response.ok) {
                 const text = await response.text();
