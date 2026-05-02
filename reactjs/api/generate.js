@@ -28,8 +28,10 @@ export default async function handler(req) {
       }
     );
 
-    // Return the response directly (it's an image blob)
-    return response;
+    // Return the response directly with a custom header to verify it's the Edge Function
+    const finalResponse = new Response(response.body, response);
+    finalResponse.headers.set('X-Edge-Proxy', 'true');
+    return finalResponse;
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), { status: 500 });
   }

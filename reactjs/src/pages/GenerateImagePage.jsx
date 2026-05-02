@@ -62,7 +62,7 @@ export default function GenerateImagePage() {
             }
 
             const response = await fetch(
-                "/api/generate",
+                `/api/generate?t=${Date.now()}`,
                 {
                     headers: {
                         "Content-Type": "application/json",
