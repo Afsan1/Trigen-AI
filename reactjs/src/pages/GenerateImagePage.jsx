@@ -61,6 +61,7 @@ export default function GenerateImagePage() {
                 throw new Error("Missing API Key! Please stop your server and run 'npm run dev' again so Vite can load your new .env variables.");
             }
 
+            console.log("Fetching from:", `/api/generate?t=${Date.now()}`);
             const response = await fetch(
                 `/api/generate?t=${Date.now()}`,
                 {
@@ -221,6 +222,7 @@ export default function GenerateImagePage() {
                     </form>
                 </div>
             </div>
+            <div className="fixed bottom-4 right-4 text-[10px] text-slate-500 opacity-30">v2.0-EDGE</div>
         </div>
     );
 }
