@@ -62,9 +62,7 @@ export default function GenerateImagePage() {
             }
 
             // Using Pollinations.ai - 100% Free, No Key Required, No CORS Issues
-            console.log("Generating image via Pollinations.ai...");
             const pollinationUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?nologo=true&seed=${Date.now()}&width=1024&height=1024&enhance=true`;
-            
             const response = await fetch(pollinationUrl);
 
             if (!response.ok) {
@@ -144,7 +142,7 @@ export default function GenerateImagePage() {
                             <ImageIcon className="text-purple-600 dark:text-purple-400" size={28} />
                         </div>
                         <div>
-                            <h1 className="text-3xl font-bold text-slate-900 dark:text-white border-2 border-purple-500 p-2 rounded-lg">Create Image (LATEST)</h1>
+                            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Create Image</h1>
                             <p className="text-slate-500 dark:text-slate-400 mt-1">Transform your ideas into stunning images using AI.</p>
                         </div>
                     </div>
@@ -216,7 +214,6 @@ export default function GenerateImagePage() {
                     </form>
                 </div>
             </div>
-            <div className="fixed bottom-4 right-4 text-[10px] text-slate-500 opacity-30">v2.0-EDGE</div>
         </div>
     );
 }

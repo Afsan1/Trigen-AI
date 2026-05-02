@@ -101,7 +101,6 @@ export default function Page() {
                 </div>
             </div>
 
-            <div className="fixed bottom-4 left-4 text-[10px] text-slate-500 opacity-30">v2.0-EDGE</div>
         </>
     );
 }
