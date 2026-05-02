@@ -61,15 +61,21 @@ export default function GenerateImagePage() {
                 throw new Error("Missing API Key! Please stop your server and run 'npm run dev' again so Vite can load your new .env variables.");
             }
 
-            console.log("Generating image via final-fix proxy...");
+            // Direct call to HuggingFace (No proxies, no Vercel backend)
+            // Using Stable Diffusion XL for maximum reliability
+            const model = "stabilityai/stable-diffusion-xl-base-1.0";
+            const targetUrl = `https://api-inference.huggingface.co/models/${model}`;
+            
+            console.log("Generating image directly from HuggingFace...");
             const response = await fetch(
-                `/api/final-fix?t=${Date.now()}`,
+                targetUrl,
                 {
                     headers: {
+                        "Authorization": `Bearer ${HF_TOKEN}`,
                         "Content-Type": "application/json",
                     },
                     method: "POST",
-                    body: JSON.stringify({ prompt }),
+                    body: JSON.stringify({ inputs: prompt }),
                 }
             );
 
