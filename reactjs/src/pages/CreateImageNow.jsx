@@ -150,7 +150,7 @@ export default function GenerateImagePage() {
                             <ImageIcon className="text-purple-600 dark:text-purple-400" size={28} />
                         </div>
                         <div>
-                            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Create Image</h1>
+                            <h1 className="text-3xl font-bold text-slate-900 dark:text-white border-2 border-purple-500 p-2 rounded-lg">Create Image (LATEST)</h1>
                             <p className="text-slate-500 dark:text-slate-400 mt-1">Transform your ideas into stunning images using AI.</p>
                         </div>
                     </div>

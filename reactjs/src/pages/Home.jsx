@@ -51,7 +51,7 @@ export default function Page() {
                             <VideoIcon strokeWidth={1} />
                             <span>Generate video</span>
                         </button>
-                        <button onClick={() => navigate("/generate-image")} className="flex items-center gap-2 border border-purple-900 transition text-slate-600 dark:text-white rounded-md px-6 h-11 hover:bg-purple-50 dark:hover:bg-purple-900/30">
+                        <button onClick={() => navigate("/create-image")} className="flex items-center gap-2 border border-purple-900 transition text-slate-600 dark:text-white rounded-md px-6 h-11 hover:bg-purple-50 dark:hover:bg-purple-900/30">
                             <ImageIcon strokeWidth={1} />
                             <span>Generate image</span>
                         </button>

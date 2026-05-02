@@ -13,6 +13,6 @@ export const navLinks = [
     },
     {
         name: "Dashboard",
-        href: "/dashboard",
+        href: "/create-image",
     }
 ];

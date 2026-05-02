@@ -10,7 +10,7 @@ import PricingPage from "./pages/PricingPage"
 import FeaturesPage from "./pages/FeaturesPage"
 import BillingPage from "./pages/BillingPage"
 import GenerateVideoPage from "./pages/GenerateVideoPage"
-import GenerateImagePage from "./pages/GenerateImagePage"
+import GenerateImagePage from "./pages/CreateImageNow"
 import GenerateSpeechPage from "./pages/GenerateSpeechPage"
 import ImageLibraryPage from "./pages/ImageLibraryPage"
 import VideoLibraryPage from "./pages/VideoLibraryPage"
@@ -38,7 +38,7 @@ export default function App() {
                             <SignedOut><RedirectToSignIn /></SignedOut>
                         </>
                     } />
-                    <Route path="/generate-image" element={
+                    <Route path="/create-image" element={
                         <>
                             <SignedIn><GenerateImagePage /></SignedIn>
                             <SignedOut><RedirectToSignIn /></SignedOut>
